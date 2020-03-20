@@ -12,7 +12,7 @@ name: x86
 on:
   push:
     branches:
-      - dev-lean-lede
+      - master
 
 jobs:
 
@@ -24,7 +24,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
         with:
-          ref: dev-lean-lede
+          ref: master
 
       - name: Space cleanup
         env:
