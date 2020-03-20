@@ -7,23 +7,24 @@
 # <https://github.com/KFERMercer/OpenWrt-CI>
 # 
 
-name: OpenWrt-CI
+name: hc5962
 
 on:
-  schedule:
-    - cron: 0 20 * * *
+  push:
+    branches:
+      - dev-lean-lede
 
 jobs:
 
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     steps:
       - name: Checkout
         uses: actions/checkout@master
         with:
-          ref: master
+          ref: dev-lean-lede
 
       - name: Space cleanup
         env:
@@ -55,6 +56,10 @@ jobs:
 
       - name: Generate configuration file
         run: make defconfig
+
+      - name: Set hc5962 config
+        run: |
+          cp -fv ./.config.hc5962 ./.config
 
       - name: Make download
         run: |
